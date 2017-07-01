@@ -1,0 +1,207 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Agenda Patient</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" href="../../../../safemedtheme/bootstrap/css/bootstrap.min.css" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/fontawesome/css/font-awesome.min.css" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/ionicons/css/ionicons.min.css" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/AdminLTE.min.css" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/skins/_all-skins.min.css" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/iCheck/flat/blue.css" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}"/>
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/datepicker/datepicker3.css" th:href="@{/safemedtheme/plugins/datepicker/datepicker3.css}"/>
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.css" th:href="@{/safemedtheme/plugins/daterangepicker/daterangepicker.css}"/>
+          <!-- FullCalendar -->
+  <link href="../../../../safemedtheme/plugins/fullcalendar/fullcalendar.min.css" th:href="@{/safemedtheme/plugins/fullcalendar/fullcalendar.min.css}" rel="stylesheet"/>
+ <link href="../../../../safemedtheme/plugins/fullcalendar/fullcalendar.print.css" th:href="@{/safemedtheme/plugins/fullcalendar/fullcalendar.print.css}" rel="stylesheet" media="print"/>
+   <!-- iCheck -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/iCheck/square/blue.css" th:href="@{/safemedtheme/plugins/iCheck/square/blue.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Rv Patient </small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#"> Rendez-vous</a></li>
+        <li class="active">Agenda Patient</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+	  <div class="row">
+        <div class="col-md-3">
+          <div class="box box-info">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" 
+                   src="../../../../safemedtheme/dist/img/avatar2.png" th:src="@{/safemedtheme/dist/img/avatar2.png}" alt="Image Patient"/>
+
+              <h3 class="profile-username text-center">Aminata Sall </h3>
+
+              <p class="text-muted text-center">Femme, 32ans</p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b><i class="fa  fa-medkit"></i>&nbsp; Dossier clinique</b> <a href="#" th:href="@{/patient/sommaireclinique}" class="pull-right"><i class="fa fa-eye"></i> </a>
+                  <br/>
+                  <span class="text-muted">
+	                &nbsp;&nbsp;&nbsp; No Dossier : 0011090989AS
+	              </span>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="ion ion-location"></i>&nbsp; Lieu de r&eacute;sidence</b> <a class="pull-right"><i class="ion ion-edit"></i></a>
+                  <br/>
+				  <span class="text-muted">
+	                &nbsp;&nbsp;&nbsp; Yoff, Dakar, Senegal
+	              </span>
+                </li>
+                <li class="list-group-item">
+                  <b><i class="ion ion-android-call"></i>&nbsp; T&eacute;l&eacute;phone</b> <a class="pull-right"><i class="ion ion-edit"></i></a>
+                  <br/>
+                  <span class="text-muted">
+	                &nbsp;&nbsp;&nbsp; (+221) 77 501-01-66
+	              </span>
+                </li>
+              </ul>
+
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /. box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+          <div class="box box-info">
+          	<div class="box-header with-border">
+              <h3 class="box-title">Rendez-vous</h3>
+            </div>
+            <div class="box-body">
+               <h5 style="text-decoration: underline;">Prochains Rendez-vous</h5>
+            	<table class="table">
+                <tr>
+                  <th>Jour</th>
+                  <th>Heure</th>
+                  <th>Type de Rendez-vous</th>
+                  <th>M&eacute;decin</th>
+                  <th>Statut</th>
+                  <th style="width: 200px">Actions</th>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-calendar"></i>&nbsp; 06 Avr. 2017</td>
+                  <td><i class="ion ion-clock"></i>&nbsp; 08h30</td>
+                  <td><a class="btn btn-primary btn-xs">Suivi annuel</a></td>
+                  <td><a href="#" style="font-weight: bold;">Dr Massamba Samb</a></td>
+                  <td>A venir</td>
+                  <td>
+                  	<div class="btn-group">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">D&eacute;placer le RDV</a></li>
+                          <li><a href="#">Pr&eacute;venir d'un retard</a></li>
+                          <li><a href="#">Copier le RDV</a></li>
+                          <li><a href="#">Imprimer le RDV</a></li>
+                          <li><a href="#">Supprimer</a></li>
+                        </ul>
+                      </div>
+                      <button type="button" class="btn btn-default btn-flat"><i class="fa fa-calendar-check-o"></i> &nbsp; Agenda</button>
+                    </div>
+                  </td>
+                </tr>
+                </table>
+                
+                <h5 style="text-decoration: underline;">Rendez-vous Pass&eacute;s</h5> 
+            	<table class="table">
+                <tr>
+                  <th>Jour</th>
+                  <th>Heure</th>
+                  <th>Type de Rendez-vous</th>
+                  <th>M&eacute;decin</th>
+                  <th>Statut</th>
+                  <th style="width: 200px">Actions</th>
+                </tr>
+                <tr>
+                  <td><i class="fa fa-calendar"></i>&nbsp; 06 Avr. 2017</td>
+                  <td><i class="ion ion-clock"></i>&nbsp; 08h30</td>
+                  <td><a class="btn btn-primary btn-xs">Suivi annuel</a></td>
+                  <td><a href="#" style="font-weight: bold;">Dr Massamba Samb</a></td>
+                  <td>A venir</td>
+                  <td>
+                  	<div class="btn-group">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">Editer</a></li>
+                          <li><a href="#">Supprimer</a></li>
+                        </ul>
+                      </div>
+                      <button type="button" class="btn btn-default btn-flat"><i class="fa fa-calendar-check-o"></i> &nbsp; Agenda</button>
+                    </div>
+                  </td>
+                </tr>
+                </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+<!-- jQuery 2.2.3 -->
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../../../safemedtheme/bootstrap/js/bootstrap.min.js" th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<!-- daterangepicker -->
+<script src="../../../../safemedtheme/plugins/moment/moment.min.js" th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<script src="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.js" th:src="@{/safemedtheme/plugins/daterangepicker/daterangepicker.js}"></script>
+<!-- datepicker -->
+<script src="../../../../safemedtheme/plugins/datepicker/bootstrap-datepicker.js" th:src="@{/safemedtheme/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<!-- Slimscroll -->
+<script src="../../../../safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../../../../safemedtheme/dist/js/app.min.js" th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<script src="../../../../safemedtheme/dist/js/pages/tableaudebord.js" th:src="@{/safemedtheme/dist/js/pages/tableaudebord.js}"></script>
+
+<script src="../../../../safemedtheme/plugins/moment/moment.min.js" th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+
+   <script>
+
+    </script>
+</body>
+</html>

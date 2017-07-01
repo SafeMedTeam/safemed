@@ -1,0 +1,69 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+	<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMED | Connexion</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" href="../../../../safemedtheme/bootstrap/css/bootstrap.min.css" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/fontawesome/css/font-awesome.min.css" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/ionicons/css/ionicons.min.css" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/AdminLTE.min.css" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>S@fe</b>MED</a>
+  </div>
+  <div class="login-box-body">
+    <p class="text-warning" style="text-align: justify;">
+		<small>Veuillez saisir votre adresse mail et le confirmer. Un courriel vous
+			   sera envoyé sous peu. Il contiendra les instructions nécessaires à
+			   la réinitialisation de votre mot de passe! </small>
+	</p>
+	<br/>
+
+    <form th:action="@{save}" th:object="${resetForm}" method="post">
+      <th:block th:if="${#fields.hasErrors('${resetForm.*}')}">
+         <div th:replace="fragment/warning :: dmewarning (type='warning', message='Veuillez les corriger les erreurs ci-dessous:', displayDetails='YES')">Alert</div>
+      </th:block>
+      <div class="form-group has-feedback" th:classappend="${#fields.hasErrors('courriel')}? 'has-warning'" >
+        <input th:field="*{courriel}" tabindex="1" id="courriel" type="text" name="courriel" placeholder="Courriel" class="form-control"/>
+        <span class="fa fa-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback" th:classappend="${#fields.hasErrors('confirmation')}? 'has-warning'" >
+        <input th:field="*{confirmation}" tabindex="2" id="confirmation" type="text"
+						name="confirmation" placeholder="Confirmation Courriel" class="form-control" />
+        <span class="fa fa-envelope form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+		  <a href="#" th:href="@{/login}" class="btn btn-default btn-block btn-flat">Annuler</a>
+        </div>
+        <div class="col-xs-6">
+          <button type="submit" class="btn btn-danger btn-block btn-flat"><i class="ion ion-ios-loop-strong"></i> &nbsp;R&eacute;initialiser</button>
+        </div>
+      </div>
+    </form>
+    <br/>
+  </div>
+</div>
+
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../../../safemedtheme/bootstrap/js/bootstrap.min.js" th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<script>
+</script>
+</body>
+</html>

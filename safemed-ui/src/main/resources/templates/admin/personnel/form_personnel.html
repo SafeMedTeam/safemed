@@ -1,0 +1,216 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Ajouter un Utilisateur</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/iCheck/all.css}"/>
+  <!-- Date Picker -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/datepicker/datepicker3.css}"/>
+    <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/timepicker/bootstrap-timepicker.min.css}"/>
+    <!-- Select2 -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/select2/select2.min.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Nouvel utilisateur</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/accueil}" ><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#" th:href="@{/admin}"> Administration</a></li>
+        <li class="active">Nouvel utilisateur</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+		<div class="col-md-12">
+           <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">Ajouter un utilisateur</h3>
+            </div>
+            <form class="form" th:action="@{save}" th:object="${utilisateur}" method="post">
+              <div class="box-body">
+              	<div class="row">
+              	<div class="col-md-12" style="text-align: right;">
+              		<span class="text-red">*</span> &nbsp;&nbsp;<span class="text-muted">Indicateur de Champs Obligatoires</span>
+              	</div>
+              	<div class="col-md-3"></div>
+              		<div class="col-md-6">
+              		
+		               <th:block th:if="${#fields.hasErrors('${utilisateur.*}')}">
+        					<div th:replace="fragment/warning :: dmewarning (type='warning', message='Le formulaire contient des erreurs. Veuillez les corriger.')">Alert</div>
+    					</th:block>
+              		    <div class="form-group" th:classappend="${#fields.hasErrors('civilite')}? 'has-warning'" style="margin-left: 20px !important;"> 
+		              	<label>
+		                  <input type="radio"  class="flat-blue" th:field="*{civilite}" name="civilite" id="civiliteM" 
+		                         th:value="${T(com.bafal.dev.patient.modele.base.enumeration.Civilite).MR}" />
+		                  <i class="ion ion-man" style="font-size: 33px !important;"></i>&nbsp;Homme
+		                </label>&nbsp;&nbsp;&nbsp;
+		                <label>
+		                  <input type="radio" class="flat-blue" th:field="*{civilite}" name="civilite" id="civiliteF"
+		                         th:value="${T(com.bafal.dev.patient.modele.base.enumeration.Civilite).MME}"/>
+		                  <i class="ion ion-woman" style="font-size: 33px !important;"></i>&nbsp;Femme <span class="text-red">*</span>
+		                  <th:block th:if="${#fields.hasErrors('civilite')}"><span data-toggle="tooltip" th:title="${#fields.errors('civilite')}"><i class="ion ion-bug text-red" style="font-size: 120%;"></i></span></th:block>
+		                </label>
+              		    </div>
+		                <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('prenom')}? 'has-warning'">
+		                  <label for="prenom">Pr&eacute;nom <span class="text-red">*</span>
+		                  <th:block th:if="${#fields.hasErrors('prenom')}"><span data-toggle="tooltip" th:title="${#fields.errors('prenom')}"><i class="ion ion-bug text-red" style="font-size: 120%;"></i></span></th:block>
+		                  </label>
+		                  <div class="input-group">
+			                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
+			                 <input th:field="*{prenom}" type="text" class="form-control" id="prenom" placeholder="Prenom"/>
+			              </div>
+		                </div>
+		                <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('nom')}? 'has-warning'">
+		                  <label for="nom">Nom de Famille <span class="text-red">*</span>
+		                  <th:block th:if="${#fields.hasErrors('nom')}"><span data-toggle="tooltip" th:title="${#fields.errors('nom')}"><i class="ion ion-bug text-red" style="font-size: 120%;"></i></span></th:block>
+		                  </label>
+		                  <div class="input-group">
+			                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
+			                 <input th:field="*{nom}" type="text" class="form-control" id="nom" placeholder="Nom"/>
+			              </div>
+		                </div>
+		                <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('idService')}? 'has-warning'">
+		                  <label for="idService">Service m&eacute;dical</label> <span class="text-red">*</span>
+		                  <select th:field="*{idService}" id="idService" name="idService" class="form-control">
+		                   <option th:value="NULL" th:text="${'Services ...'}"></option>
+		                   <option th:each="serv : ${services}"
+		                     				th:value="${serv.id}" th:text="${serv.nomService}" ></option>
+		                 </select>
+		                </div>
+		                <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('telephone')}? 'has-warning'">
+		                  <label for="telephone">T&eacute;l&eacute;phone</label>
+		                  <div class="input-group">
+			                 <span class="input-group-addon"><i class="ion ion-android-call"></i></span>
+			                 <input th:field="*{telephone}" type="text" class="form-control" id="telephone" placeholder="77 222-33-44"/>
+			              </div>
+		                </div>
+		                <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('courriel')}? 'has-warning'">
+		                  <label for="courriel">Courriel <span class="text-red">*</span>
+		                  <th:block th:if="${#fields.hasErrors('courriel')}"><span data-toggle="tooltip" th:title="${#fields.errors('courriel')}"><i class="ion ion-bug text-red" style="font-size: 120%;"></i></span></th:block>
+		                  </label> 
+				          <div class="input-group">
+			                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+			                 <input th:field="*{courriel}" type="text" class="form-control" id="courriel" placeholder="email@domaine.com"/>
+			              </div>
+		                </div>
+		                <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('dateDebutActivite')}? 'has-warning'">
+		                  <label for="dateDebutActivite">Date D&eacute;but Activit&eacute;</label>
+				          <div class="input-group">
+			                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			                 <input th:field="*{dateDebutActivite}" type="text" class="form-control" id="dateDebutActivite" />
+			              </div>
+		                </div>
+		                <div class="form-group col-md-6" th:classappend="${#fields.hasErrors('dateFinActivite')}? 'has-warning'">
+		                  <label for="dateFinActivite">Date Fin Activit&eacute;</label>
+				          <div class="input-group">
+			                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			                 <input th:field="*{dateFinActivite}" type="text" class="form-control" id="dateFinActivite" />
+			              </div>
+		                </div>
+		                <div class="form-group col-md-12" th:classappend="${#fields.hasErrors('codeRoles')}? 'has-warning'">
+			                <label for="codeRoles">Roles</label> <span class="text-red">*</span>
+			                <select th:field="*{codeRoles}" class="form-control select2" id="codeRoles" multiple="multiple" style="width: 100%;" data-placeholder="Selectionner un role ..." >
+			                  <option th:each="role : ${listeRoles}"
+		                     				th:value="${role.code}" th:text="${role.nom}" ></option>
+			                </select>
+			              </div>
+		                </div>
+		                <div class="col-md-3"></div> 
+              	</div>
+              </div>
+              <div class="box-footer">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <button type="reset" class="btn btn-default">Annuler</button>
+                <button type="submit" class="btn btn-danger pull-right">Enregistrer</button>
+                </div>
+                <div class="col-md-3"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<!-- datepicker -->
+<script th:src="@{/safemedtheme/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script th:src="@{/safemedtheme/plugins/datepicker/locales/bootstrap-datepicker.fr.js}"></script>
+<!-- bootstrap time picker -->
+<script th:src="@{/safemedtheme/plugins/timepicker/bootstrap-timepicker.min.js}"></script>
+<!-- Slimscroll -->
+<script th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<script th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<!-- Select2 -->
+<script th:src="@{/safemedtheme/plugins/select2/select2.full.min.js}"></script>
+<!-- iCheck -->
+<script th:src="@{/safemedtheme/plugins/iCheck/icheck.min.js}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+    
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue'
+    });
+    
+    $('#dateDebutActivite').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: 'fr'
+      });
+    $('#dateFinActivite').datepicker({
+    	autoclose: true,
+    	todayHighlight: true,
+        language: 'fr'
+      });
+    
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <div th:fragment="ajoutCaisse">
+    <p class="text-warning">
+      <small>Veillez noter que si vous ne sauvegardez pas les informations saisies, elles seront perdues une
+        fois que la fen&ecirc;tre flottante se ferme.</small>
+    </p>
+
+    <div class="row">
+      <div class="col-md-6">
+      <div class="form-group-sm" th:classappend="${#fields.hasErrors('caisses[__${caisseStat.index}__].entite.noSecuSociale')}? 'has-error'">
+        <label for="noSecuSociale">N&omicron; S. sociale :</label> <input size="" th:field="*{caisses[__${caisseStat.index}__].entite.noSecuSociale}"
+          id="noSecuSociale" type="text" name="noSecuSociale" class="form-control"
+        />
+      </div>
+      <div class="form-group-sm" th:classappend="${#fields.hasErrors('caisses[__${caisseStat.index}__].entite.typeCaisse')}? 'has-error'">
+        <label for="typeCaisse"> Type Caisse :</label> <input size="50" th:field="*{caisses[__${caisseStat.index}__].entite.typeCaisse}" id="typeCaisse"
+          type="text" name="typeCaisse" class="form-control"/>
+      </div>
+      <div class="form-group-sm" th:classappend="${#fields.hasErrors('caisses[__${caisseStat.index}__].entite.nomCaisse')}? 'has-error'">
+        <label for="nomCaisse"> Nom Caisse :</label> <input size="50" th:field="*{caisses[__${caisseStat.index}__].entite.nomCaisse}" id="nomCaisse"
+          type="text" name="tnomCaisse" class="form-control"/>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <div class="form-group-sm">
+        <label for="cmu">CMU :</label> <select th:field="*{caisses[__${caisseStat.index}__].entite.cmu}" id="cmu" name="cmu" class="form-control">
+          <option th:each="type : ${T(com.bafal.dev.patient.web.bean.TypeBoolean).values()}" th:value="${type.valeur}"
+            th:text="${type.nom}"
+          ></option>
+        </select>
+      </div>
+      <div class="form-group-sm" th:classappend="${#fields.hasErrors('caisses[__${caisseStat.index}__].entite.contratMutuelle')}? 'has-error'">
+        <label for="contratMutuelle">Contrat :</label> <input size="15" th:field="*{caisses[__${caisseStat.index}__].entite.contratMutuelle}"
+          id="contratMutuelle" type="text" name="contratMutuelle" class="form-control"
+        />
+      </div>
+    </div>
+   </div>
+  </div>
+   
+</body>
+</html>

@@ -1,0 +1,167 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Profil Utilisateur</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}"/>
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/select2/select2.min.css}"/>
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css}"/>
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/dialog/css/bootstrap-dialog.min.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <div class="content-wrapper">
+    <form class="form" th:action="@{save}" th:object="${user}" method="post">
+    <section class="content-header">
+      <h1>
+        <small th:text="${'Profil '+user.nomComplet}"></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#"> Personnel</a></li>
+        <li class="active">Profil</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+	  <div class="row">
+        <div class="col-md-3">
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle" 
+                   src="../../../../safemedtheme/dist/img/medecin.jpg" th:src="@{/safemedtheme/dist/img/medecin.jpg}" alt="Image Profil"/>
+
+              <h3 class="profile-username text-center" th:text="${user.nomComplet}">Dr Bafal</h3>
+
+              <p class="text-muted text-center" th:text="${'Profil '+user.fonction}"></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b><i class="fa  fa-medkit"></i>&nbsp; Service m&eacute;dical</b> <a href="#" th:href="@{/personnel/profil}" class="pull-right"><i class="fa fa-eye"></i> </a>
+                  <br/>
+                  <span class="text-muted">
+	                &nbsp;&nbsp;&nbsp; <span th:text="${user.nomService}"></span>
+	              </span>
+                </li>
+              </ul>
+              <a href="#" class="btn btn-primary btn-block"><b>Modifier le profil</b></a>
+            </div>
+          </div>
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">&Agrave; propos de moi</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-map-marker margin-r-5"></i>&nbsp; Lieu de r&eacute;sidence </strong>
+
+              <p class="text-muted" th:text="${user.adresse}"></p>
+
+              <hr/>
+
+              <strong><i class="ion ion-android-call margin-r-5"></i> T&eacute;l&eacute;phone</strong>
+
+              <p class="text-muted" th:text="${user.telephone}"></p>
+
+              <hr/>
+              
+              <strong><i class="fa fa-envelope margin-r-5"></i> Courriel</strong>
+
+              <p class="text-muted" th:text="${user.courriel}"></p>
+
+              <hr/>
+
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+
+              <p> Compte actif depuis <span th:text="${user.dateDebutActivite}"></span></p>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="box box-primary">
+          	<div class="box-header">
+              <h3 class="box-title">Profil</h3>
+            </div>
+            <div class="box-body no-padding">
+	 			<div class="nav-tabs-custom">
+	            <ul class="nav nav-tabs">
+	              <li class="active"><a href="#tab_mdp" data-toggle="tab"><i class="fa fa-lock"></i>&nbsp; Changement MDP</a></li> 
+	              <li><a href="#tab_pref" data-toggle="tab"><i class="ion ion-person-add"></i>&nbsp; Pr&eacute;f&eacute;rences</a></li>
+	              <li><a href="#tab_task" data-toggle="tab"><i class="ion ion-clipboard"></i>&nbsp; T&acirc;ches</a></li>
+	              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+	            </ul>
+	            <div class="tab-content">
+	              <div class="tab-pane active" id="tab_mdp">
+	                <div th:replace="personnel/tab_mdp :: mdp"></div> 
+	              </div>
+	              <div class="tab-pane" id="tab_pref">
+	              	<div th:replace="personnel/tab_pref :: pref"></div> 
+	              </div>
+	              <div class="tab-pane" id="tab_task">
+	            	<div th:replace="personnel/tab_task :: task"></div> 
+	              </div>
+	            </div>
+	          </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </form>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+<div th:replace="task/ajouter_task :: nouvelletask"></div>
+
+<!-- jQuery 2.2.3 -->
+<script th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/safemedtheme/plugins/moment/locale/fr.js}"></script>
+<script th:src="@{/safemedtheme/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+<!-- Slimscroll -->
+<script th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<!-- AdminLTE App -->
+<script  th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<script th:src="@{/safemedtheme/dist/js/pages/tableaudebord.js}"></script>
+<!-- Select2 -->
+<script th:src="@{/safemedtheme/plugins/select2/select2.full.min.js}"></script>
+<script th:src="@{/safemedtheme/plugins/select2/i18n/fr.js}"></script>
+
+<script th:src="@{/safemedtheme/plugins/dialog/js/bootstrap-dialog.min.js}"></script>
+<script th:src="@{/safemedtheme/dist/js/dme.js}"></script>
+<script>
+</script>
+</body>
+</html>

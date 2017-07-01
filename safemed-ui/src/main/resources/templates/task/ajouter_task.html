@@ -1,0 +1,120 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="modal" id="modalTask" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true"
+		th:fragment="nouvelletask">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Nouvelle t&acirc;che</h4>
+				</div>
+				<div id="content"></div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<form role="form" th:action="@{/personnel/task/save}" th:object="${task}" method="post" th:fragment="task_content">
+		<div class="modal-body">
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="idAssigne">Assign&eacute;</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-user-md"></i></span>
+						<select th:field="*{idAssigne}" class="form-control select2-task" id="idAssigne" data-placeholder="Entrer l'utilisateur..." style="width: 100%;">
+			                  <option th:value="NULL" th:text="..."></option>
+			            </select>	
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label for="sujet">Sujet</label> <input th:field="*{sujet}"
+						type="text" class="form-control" id="sujet" placeholder="Sujet" />
+				</div>
+				<div class="form-group col-md-5">
+					<label for="dateDebut">Date de d&eacute;but</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input th:field="*{dateDebut}" type="text" class="form-control"
+							id="dateDebut" placeholder="Date de debut" />
+					</div>
+				</div>
+				<div class="form-group col-md-7">
+					<label for="statut">Statut</label> <select th:field="*{statut}"
+						id="statut" name="statut" class="form-control">
+						<option th:value="NULL" th:text="${'Statut ...'}"></option>
+						<option
+							th:each="stat : ${T(com.bafal.dev.patient.modele.base.enumeration.StatutTask).values()}"
+							th:value="${stat}" th:text="${stat.nom}"></option>
+					</select>
+				</div>
+				<div class="form-group col-md-5">
+					<label for="dateEcheance">Date d'&eacute;ch&eacute;ance</label>
+					<div class="input-group">
+						<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+						<input th:field="*{dateEcheance}" type="text" class="form-control"
+							id="dateEcheance" placeholder="Date d'echeance" />
+					</div>
+				</div>
+				<div class="form-group col-md-4">
+					<label for="priorite">Priorit&eacute;</label> <select
+						th:field="*{priorite}" id="priorite" name="priorite"
+						class="form-control">
+						<option th:value="NULL" th:text="${'Priorite ...'}"></option>
+						<option
+							th:each="prio : ${T(com.bafal.dev.patient.modele.base.enumeration.PrioriteTask).values()}"
+							th:value="${prio}" th:text="${prio.nom}"></option>
+					</select>
+				</div>
+				<div class="form-group col-md-3">
+					<label for="pourcentageComplete">% Compl&eacute;t&eacute;</label>
+					<div class="input-group">
+						<input th:field="*{pourcentageComplete}" type="text"
+							class="form-control" id="pourcentageComplete"
+							placeholder="Pourcentage" /> <span class="input-group-addon"><i
+							class="fa fa-percent"></i></span>
+					</div>
+				</div>
+				<div class="form-group col-md-12">
+					<label for="description">Description</label>
+					<textarea th:field="*{description}" class="form-control" rows="3"
+						placeholder="Description ici ..."></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default pull-left"
+				data-dismiss="modal">Fermer</button>
+			<button type="submit" class="btn btn-info">Enregistrer</button>
+		</div>
+		
+		<script>
+		  $(function () {
+		    $('#dateDebut').datetimepicker({
+		        locale : 'fr',
+		        format : 'DD/MM/YYYY HH:mm',
+		        useCurrent: false
+		    });
+		    $('#dateEcheance').datetimepicker({
+		        locale : 'fr',
+		        format : 'DD/MM/YYYY HH:mm',
+		        useCurrent: false
+		    });
+		    
+		    selectRemoteUtilisateurs('.select2-task', '#modalTask', '/json/task/utilisateurs');
+		        
+		  });
+		</script>
+	</form>
+
+</body>
+</html>

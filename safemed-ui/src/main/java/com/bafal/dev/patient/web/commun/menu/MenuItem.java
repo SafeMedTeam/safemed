@@ -1,0 +1,87 @@
+package com.bafal.dev.patient.web.commun.menu;
+
+import java.util.List;
+
+/**
+ * Objet d'item du menu de la barre de navigation
+ * 
+ * @author bafall
+ *
+ */
+public class MenuItem implements Comparable<MenuItem> {
+
+    private int ordreTri;
+    private String nom;
+    private String url;
+    private boolean active;
+    private boolean hasItems;
+    private List<ItemEnfant> items;
+    private String cssClasse;
+
+    public MenuItem() {
+        super();
+    }
+
+    public int getOrdreTri() {
+        return ordreTri;
+    }
+
+    public void setOrdreTri(int ordreTri) {
+        this.ordreTri = ordreTri;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public boolean isHasItems() {
+        hasItems = !(items == null || items.isEmpty());
+        return hasItems;
+    }
+
+    public void setHasItems(boolean hasItems) {
+        this.hasItems = hasItems;
+    }
+
+    public List<ItemEnfant> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEnfant> items) {
+        this.items = items;
+    }
+
+    public String getCssClasse() {
+        return cssClasse;
+    }
+
+    public void setCssClasse(String cssClasse) {
+        this.cssClasse = cssClasse;
+    }
+
+    @Override
+    public int compareTo(MenuItem menu) {
+        return ordreTri - menu.getOrdreTri();
+    }
+
+}

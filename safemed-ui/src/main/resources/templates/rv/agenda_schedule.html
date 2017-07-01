@@ -1,0 +1,125 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>S@feMeD | Agenda</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport" />
+
+<link rel="icon" href="../../../../safemedtheme/img/educa2.png"
+	type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+
+<link rel="stylesheet" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+<link rel="stylesheet" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}" />
+<link rel="stylesheet" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}" />
+<!-- iCheck -->
+<link rel="stylesheet" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}" />
+<!-- Date Picker -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/datetimepicker/css/bootstrap-datetimepicker.min.css}"/>
+<!-- FullCalendar -->
+<link
+	th:href="@{/safemedtheme/plugins/fullcalendar/fullcalendar.min.css}" rel="stylesheet" />
+<link
+	th:href="@{/safemedtheme/plugins/fullcalendar/fullcalendar.print.css}" rel="stylesheet" media="print" />
+<!-- iCheck -->
+<link rel="stylesheet" th:href="@{/safemedtheme/plugins/iCheck/square/blue.css}" />
+
+<link rel="stylesheet" th:href="@{/safemedtheme/plugins/select2/select2.min.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+	<div class="wrapper">
+
+		<div th:replace="fragment/top :: header" th:remove="tag"></div>
+
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					<small>Agenda</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+					<li><a href="#"> Rendez-vous</a></li>
+					<li class="active">Agenda</li>
+				</ol>
+			</section>
+
+			<section class="content">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="btn-group">
+							<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#" th:href="@{/patient/edit/}">Cr&eacute;ation rapide</a></li>
+								<li><a href="#" th:href="@{/agenda/patient}">Copier l'horaire de cette semaine</a></li>
+								<li class="divider"></li>
+								<li><a href="#" th:href="@{/patient/sommaireclinique/}">Supprimer l'horaire de cette semaine</a></li>
+								<li class="divider"></li>
+								<li><a href="#" th:href="@{/patient/sommaireclinique/}">Je suis en vacances cette semaine</a></li>
+							</ul>
+						</div>
+						<button type="button" class="btn btn-default" >Actualiser</button>
+					</div>
+					<div class="col-md-12">
+						<div class="box box-info">
+							<div class="box-body no-padding">
+								<!-- THE CALENDAR -->
+								<div id="dme_agenda"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<footer class="main-footer">
+			<div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+		</footer>
+	</div>
+	<div th:replace="rv/ajouter_rv :: nouveaurv"></div>
+	
+	<!-- <div th:replace="rv/schedule :: scheduler"></div> -->
+	<!-- jQuery 2.2.3 -->
+	<script th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+	<!-- jQuery UI 1.11.4 -->
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+	<script>
+		$.widget.bridge('uibutton', $.ui.button);
+	</script>
+	<!-- Bootstrap 3.3.6 -->
+	<script th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+	<script th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+	<script th:src="@{/safemedtheme/dist/js/pages/tableaudebord.js}"></script>
+
+	<script th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+	<script th:src="@{/safemedtheme/plugins/moment/locale/fr.js}"></script>
+	<script th:src="@{/safemedtheme/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js}"></script>
+	<script
+		th:src="@{/safemedtheme/plugins/fullcalendar/fullcalendar.min.js}"></script>
+	<script th:src="@{/safemedtheme/plugins/fullcalendar/locale/fr.js}"></script>
+	<script th:src="@{/safemedtheme/plugins/iCheck/icheck.min.js}"></script>
+	<script th:src="@{/safemedtheme/dist/js/dme.js}"></script>
+	<script th:src="@{/safemedtheme/dist/js/dme_calendar.js}"></script>
+	<!-- Select2 -->
+	<script th:src="@{/safemedtheme/plugins/select2/select2.full.min.js}"></script>
+	<script th:src="@{/safemedtheme/plugins/select2/i18n/fr.js}"></script>
+	<script>
+
+		$(window).load(function() {
+			dmeAgenda('/json/agenda/schedule/semainedispo', '#dme_agenda');
+		});
+	</script>
+</body>
+</html>

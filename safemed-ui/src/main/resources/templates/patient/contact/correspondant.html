@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="fiedsetRepondant">
+		<fieldset class="formulaire">
+			<legend>Correspondants</legend>
+
+			<div class="panel panel-default">
+				<!-- <div class="panel-heading">Panel heading</div> -->
+				<div class="panel-body">
+					<p>Il vous est possible de d&eacute;signer une personne,
+						librement choisie par vous dans votre entourage et en qui vous
+						avez toute confiance, pour vous accompagner tout au long des soins
+						et des décisions &agrave; prendre. Cette personne, que
+						l’h&ocirc;pital consid&eacute;rera comme votre personne de
+						confiance, pourra, si vous en faites la demande, assister aux
+						entretiens m&eacute;dicaux et vous aider &agrave; formuler vos
+						souhaits.</p>
+                <div style="text-align: right;">
+                  <button type="submit" name="ajouterCorrespondant" class="btn-link">
+                      <span class="fa fa-user-plus">Ajouter un correspondant</span>
+                  </button>
+                </div>
+                <div th:if="${#fields.hasErrors('correspondants')}">
+                    <span class="label label-danger">Il faut saisir, au minimum, une personne ressource. </span>
+                </div>
+				</div>
+                
+				<!-- Table -->
+				<table class="table">
+					<thead>
+						<tr>
+							<th style="width: 8%;">&nbsp;</th>
+							<th style="width: 20%;">Prenom</th>
+							<th style="width: 20%;">Nom</th>
+							<th style="width: 19%;">Telephone</th>
+                            <th style="width: 19%;">Lien</th>
+							<th style="width: 14%;">
+								
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="correspondant, correspondantStat : *{correspondants}"
+							th:classappend="${correspondantStat.odd}? 'odd'">
+                            <div th:if="${T(com.bafal.dev.patient.web.commun.UIVisibility).showModeAjoutCorrespondant(correspondant)}" th:remove="tag">
+                                <div th:include="patient/fragment/nouveau_correspondant :: ajoutCorrespondant" th:remove="tag"></div>
+                            </div>
+                            <div th:unless="${T(com.bafal.dev.patient.web.commun.UIVisibility).showModeAjoutCorrespondant(correspondant)}" th:remove="tag">
+                            <td th:text="${correspondant.entite.identite.civilite}">eee</td>
+                            <td th:text="${correspondant.entite.identite.prenom}">eee</td>
+                            <td th:text="${correspondant.entite.identite.nom}">eee</td>
+                            <td th:text="${correspondant.entite.identite.telephone}">eee</td>
+                            <td th:text="${correspondant.entite.lienParente}">eee</td>
+                            <td>
+                               <div class="btn-group btn-group-sm" role="group">
+                                <button type="submit" name="editCorrespondant" th:value="${correspondantStat.index}" class="btn btn-default">
+                                  <span class="fa fa-pencil-square-o icon"></span>
+                                </button>
+                                <button type="submit" name="annulerCorrespondant" th:value="${correspondantStat.index}" class="btn btn-default">
+                                  <span class="fa fa-trash-o icon"></span>
+                                </button>
+                              </div>
+                            </td>
+                            </div>
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</fieldset>
+	</div>
+</body>
+</html>

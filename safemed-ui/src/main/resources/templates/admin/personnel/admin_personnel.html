@@ -1,0 +1,131 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Administration Personnel</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" href="../../../../safemedtheme/bootstrap/css/bootstrap.min.css" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/fontawesome/css/font-awesome.min.css" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/ionicons/css/ionicons.min.css" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/AdminLTE.min.css" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/skins/_all-skins.min.css" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/iCheck/all.css" th:href="@{/safemedtheme/plugins/iCheck/all.css}"/>
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/datepicker/datepicker3.css" th:href="@{/safemedtheme/plugins/datepicker/datepicker3.css}"/>
+    <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/timepicker/bootstrap-timepicker.min.css" th:href="@{/safemedtheme/plugins/timepicker/bootstrap-timepicker.min.css}"/>
+    <!-- Select2 -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/select2/select2.min.css" th:href="@{/safemedtheme/plugins/select2/select2.min.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Nouvel utilisateur</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#" th:href="@{/accueil}" ><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#" th:href="@{/admin}"> Administration</a></li>
+        <li class="active">Gestion Utilisateur</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+		<div class="col-md-12">
+		 <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs tabs-admin">
+              <li class="active"><a href="#tab_1" data-toggle="tab"><i class="ion ion-ios-people"></i></a></li> 
+              <li><a href="#tab_2" data-toggle="tab"><i class="ion ion-person-add"></i></a></li>
+              <li><a href="#tab_3" data-toggle="tab"><i class="ion ion-android-checkbox-outline"></i></a></li>
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab_1">
+                
+              </div>
+              <div class="tab-pane" id="tab_2">
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../../../safemedtheme/bootstrap/js/bootstrap.min.js" th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<!-- daterangepicker -->
+<script src="../../../../safemedtheme/plugins/moment/moment.min.js" th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<!-- datepicker -->
+<script src="../../../../safemedtheme/plugins/datepicker/bootstrap-datepicker.js" th:src="@{/safemedtheme/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script src="../../../../safemedtheme/plugins/datepicker/locales/bootstrap-datepicker.fr.js" th:src="@{/safemedtheme/plugins/datepicker/locales/bootstrap-datepicker.fr.js}"></script>
+<!-- bootstrap time picker -->
+<script src="../../../../safemedtheme/plugins/timepicker/bootstrap-timepicker.min.js" th:src="@{/safemedtheme/plugins/timepicker/bootstrap-timepicker.min.js}"></script>
+<!-- Slimscroll -->
+<script src="../../../../safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../../../../safemedtheme/dist/js/app.min.js" th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<!-- Select2 -->
+<script src="../../../../safemedtheme/plugins/select2/select2.full.min.js" th:src="@{/safemedtheme/plugins/select2/select2.full.min.js}"></script>
+<!-- iCheck -->
+<script src="../../../../safemedtheme/plugins/iCheck/icheck.min.js" th:src="@{/safemedtheme/plugins/iCheck/icheck.min.js}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+    
+    //iCheck for checkbox and radio inputs
+    $('input[type="checkbox"].flat-blue, input[type="radio"].flat-blue').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue'
+    });
+    
+    $('#dateDebutActivite').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        language: 'fr'
+      });
+    $('#dateFinActivite').datepicker({
+    	autoclose: true,
+    	todayHighlight: true,
+        language: 'fr'
+      });
+    
+  });
+</script>
+</body>
+</html>

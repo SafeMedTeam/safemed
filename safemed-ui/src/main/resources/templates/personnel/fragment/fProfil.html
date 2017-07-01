@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="profil">
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 center">
+				<span class="img-profil"> <img id="avatar"
+					class="editable img-responsive"
+					src="../../../webapp/bootstrap/css/img/profil4.jpg"
+					th:src="@{/bootstrap/css/img/profil4.jpg}" alt="profil"></img>
+				</span>
+			</div>
+			<div class="col-xs-12 col-sm-9">
+				<h4 class="h4profil">
+					<span th:text="*{entite.prenom}">Bafal</span> <span th:text="*{entite.nom}">Fall.</span>
+				</h4>
+				<div class="profil-row">
+					<div class="profil-label">Pseudo</div>
+					<div class="profil-valeur">
+						<span th:text="*{entite.codePersonnel}">bafal@hotmail.com</span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">Service</div>
+					<div class="profil-valeur">
+						<span th:text="*{service.nomService}">Odontologie</span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">Téléphone</div>
+					<div class="profil-valeur"><i class="fa fa-phone iconpref"></i>
+						<span><a th:field="*{entite.telephone}"   href="#" id="telephone" 
+                                 data-type="text" data-pk="1" data-url="/personnel/editprofil" 
+                                 data-title="Telephone" th:text="*{entite.telephone}">418-262-8019</a>
+                        </span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">Adresse</div>
+					<div class="profil-valeur"><i class="fa fa-map-marker iconpref"></i>
+						<span><a href="#" id="adresse" data-type="text" data-pk="2" data-url="/personnel/editprofil" data-title="Nouvelle adresse" th:text="*{entite.adresse}">2770, Av. Duval</a></span>,&nbsp; 
+						<span><a href="#" id="ville" data-type="text" data-pk="3" data-url="/personnel/editprofil" data-title="Ville" th:text="*{entite.ville}">Québec</a></span>,&nbsp; 
+						<span><a href="#" id="pays" data-type="text" data-pk="4" data-url="/personnel/editprofil" data-title="Pays" th:text="*{entite.pays}">Canada</a></span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">Age</div>
+					<div class="profil-valeur">
+						<span th:text="*{age}">35</span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">A propos de moi</div>
+					<div class="profil-valeur">
+						<span th:text="*{entite.fonction}">Medecin généraliste</span>
+					</div>
+				</div>
+				<div class="profil-row">
+					<div class="profil-label">Courriel</div>
+					<div class="profil-valeur">
+						<span th:text="*{entite.courriel}">baba@baba.ca</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

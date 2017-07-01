@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Bienvenue <span th:text="${civilite}"></span> <em th:text="${prenom}"></em>
+</p>
+<p>
+   Merci pour la creation de votre compte.
+</p>
+<p>
+    Le <strong>nom d'utilisateur</strong> associ&eacute; &agrave; votre compte est le suivant : <span th:text="${username}"></span>
+    <br/>
+    Votre <strong>mot de passe</strong> <em>provisoire</em> est : <span th:text="${password}"></span>
+</p>
+<p>
+	Veuillez changer votre mot de passe lors de votre premiere connexion.
+</p>
+<p>
+    Cordialement,<br/><br/>
+
+    Administration<br/>
+    
+
+    --
+    <em>S@FE MED Team</em>
+    Dossier M&eacute;dical Electronique SafeMed <br/>
+    &copy; Tous les droits r&eacute;serv&eacute;s.
+</p>
+<div>
+Vous avez recu cet email parce qu'un compte a &eacute;t&eacute; cr&eacute;&eacute; &agrave; votre nom <a th:href="@{'mailto:'+${courriel}}" target="_blank"><span th:text="${courriel}">mail</span> </a> dans l'application SafeMed. <br/>
+Veuillez ne pas r&eacute;pondre &agrave; cet enmail. Si vous avez des questions, contactez <a th:href="@{'mailto:'+${emailsupport}}" target="_blank">L'&eacute;quipe de Support</a> .
+</div>
+</body>
+</html>

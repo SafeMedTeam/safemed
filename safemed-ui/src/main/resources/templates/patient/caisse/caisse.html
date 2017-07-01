@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <div th:fragment="fiedsetSecu">
+    <fieldset class="formulaire">
+      <legend>Sécurité sociale</legend>
+      <div class="panel panel-default">
+        <!-- <div class="panel-heading">Panel heading</div> -->
+        <div class="panel-body">
+          <p>Veuillez saisir ici, les informations concernant la caisse de s&eacute;curit&eacute; sociale du
+            patient, le cas &eacute;ch&eacute;ant.</p>
+           <div th:if="${#fields.hasErrors('caisses')}">
+              <span class="label label-danger">Il faut saisir, au minimum, une caisse d'assurance. </span>
+           </div>
+        </div>
+        <!-- Table -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th style="width: 10%;">No</th>
+              <th style="width: 25%;">No Secu sociale</th>
+              <th style="width: 25%;">Contrat</th>
+              <th style="width: 25%;">CMU</th>
+              <th style="width: 15%;">
+                <button id="addCaisseBt" type="submit" class="bouton" name="ajouterCaisse">
+                  <span class="fa fa-plus icon"></span>
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="caisse,caisseStat : *{caisses}" th:classappend="${caisseStat.odd}? 'odd'">
+              <div th:if="${T(com.bafal.dev.patient.web.commun.UIVisibility).showModeAjoutCaisse(caisse)}" th:remove="tag">
+
+                <td colspan="4">
+                  <div th:include="patient/fragment/nouvelle_caisse :: ajoutCaisse" th:remove="tag"></div>
+                </td>
+                <td style="text-align: center;vertical-align: middle;">
+                    <button type="submit" name="annulerCaisse" th:value="${caisseStat.index}" class="btn-link">
+                      <span>Annuler</span>
+                    </button>
+                </td>
+              </div>
+              <div th:unless="${T(com.bafal.dev.patient.web.commun.UIVisibility).showModeAjoutCaisse(caisse)}" th:remove="tag">
+                <td th:text="${caisseStat.count}">1</td>
+                <td th:text="${caisse.entite.noSecuSociale}">tetttette</td>
+                <td th:text="${caisse.entite.contratMutuelle}">N12344</td>
+                <td th:text="${caisse.entite.cmu}">Oui</td>
+                <td>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button type="submit" name="editCaisse" th:value="${caisseStat.index}" class="btn btn-default">
+                      <span class="fa fa-pencil-square-o icon"></span>
+                    </button>
+                    <button type="submit" name="annulerCaisse" th:value="${caisseStat.index}" class="btn btn-default">
+                      <span class="fa fa-trash-o icon"></span>
+                    </button>
+                  </div>
+                </td>
+              </div>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </fieldset>
+  </div>
+</body>
+</html>

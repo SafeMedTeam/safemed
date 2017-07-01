@@ -1,0 +1,286 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Dossier m&eacute;dical ::. Nouveau Patient</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/fontawesome/css/font-awesome.css"
+	th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+	th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+
+<link
+	href="//fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900"
+	rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap-date/css/bootstrap-datetimepicker.min.css"
+	th:href="@{/bootstrap-date/css/bootstrap-datetimepicker.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap-calendar/css/calendar.min.css"
+	th:href="@{/bootstrap-calendar/css/calendar.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/dashboard.css"
+	th:href="@{/bootstrap/css/dashboard.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/metisMenu/metisMenu.min.css"
+	th:href="@{/metisMenu/metisMenu.min.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+	th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script
+	src="../../../webapp/bootstrap-date/js/moment/moment-with-locales.min.js"
+	th:src="@{/bootstrap-date/js/moment/moment-with-locales.min.js}"></script>
+
+<script
+	src="../../../webapp/bootstrap-date/js/bootstrap-datetimepicker.min.js"
+	th:src="@{/bootstrap-date/js/bootstrap-datetimepicker.min.js}"></script>
+
+<script
+	src="../../../webapp/bootstrap-calendar/js/underscore/underscore-min.js"
+	th:src="@{/bootstrap-calendar/js/underscore/underscore-min.js}"></script>
+<script src="../../../webapp/bootstrap-calendar/js/calendar.js"
+	th:src="@{/bootstrap-calendar/js/calendar.js}"></script>
+<script src="../../../webapp/bootstrap-calendar/js/language/fr-FR.js"
+	th:src="@{/bootstrap-calendar/js/language/fr-FR.js}"></script>
+<script src="../../../webapp/bootstrap/js/dashboard.js"
+	th:src="@{/bootstrap/js/dashboard.js}"></script>
+<script src="../../../webapp/metisMenu/metisMenu.min.js"
+	th:src="@{/metisMenu/metisMenu.min.js}"></script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				var options = {
+					events_source : '/calendrier.json',
+					view : 'month',
+					tmpl_path : 'bootstrap-calendar/tmpls/',
+					tmpl_cache : false,
+					language : 'fr-FR',
+					onAfterViewLoad : function(view) {
+						$('.btnCalendar h3').text(this.getTitle());
+						$('.btnCalendar button').removeClass('active');
+						$('button[data-calendar-view="' + view + '"]')
+								.addClass('active');
+					}
+				};
+
+				var calendar = $('#calendrier').calendar(options);
+				$('.btnCalendar button[data-calendar-nav]').each(function() {
+					var $this = $(this);
+					$this.click(function() {
+						calendar.navigate($this.data('calendar-nav'));
+					});
+				});
+
+				$('.btnCalendar button[data-calendar-view]').each(function() {
+					var $this = $(this);
+					$this.click(function() {
+						calendar.view($this.data('calendar-view'));
+					});
+				});
+				$('#dateDebut').datetimepicker({
+					locale : 'fr',
+					format : 'DD/MM/YYYY'
+				});
+				$('#dateFin').datetimepicker({
+					locale : 'fr',
+					format : 'DD/MM/YYYY'
+				});
+				$('#dateDebut').data("DateTimePicker").minDate(moment());
+				$('#dateFin').data("DateTimePicker").minDate(moment());
+		        $("#dateDebut").on("dp.change", function (e) {
+		            $('#dateFin').data("DateTimePicker").minDate(e.date);
+		        });
+		        $("#dateFin").on("dp.change", function (e) {
+		            $('#dateDebut').data("DateTimePicker").maxDate(e.date);
+		        });
+				$('#debut').datetimepicker({
+					locale : 'fr',
+					format : 'HH:mm'
+				});
+				$('#fin').datetimepicker({
+					locale : 'fr',
+					format : 'HH:mm'
+				});
+				$('#debut').on("dp.change", function(e) {
+					$('#fin').data("DateTimePicker").minDate(e.date);
+				});
+				$("#fin").on("dp.change", function(e) {
+					$('#debut').data("DateTimePicker").maxDate(e.date);
+				});
+			});
+	function ouvrirDialog() {
+		$(function() {
+			$("#caisseModal").modal('show');
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<div th:replace="fragment/top :: header"></div>
+		</header>
+		<section id="page-wrapper" class="page-patient">
+			<div style="margin: 0 -30px">
+				<ol class="breadcrumb">
+					<li><a href="/">Acceuil</a></li>
+					<li><a href="/agenda">Agenda</a></li>
+					<li class="active">Formulaire Rendez-vous</li>
+				</ol>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-header page-entete">Formulaire de Rendez-vous</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading"></div>
+						<div class="panel-body">
+							<form action="#" th:action="@{/createAgenda}" th:object="${rv}"
+								method="post">
+								<div>
+									<!-- BTN_HAUT -->
+									<div class="col-md-12">
+										<!-- BOUTONS -->
+									</div>
+									<div class="clearfix visible-md-block"></div>
+									<!-- CALENDRIER -->
+									<div class="col-md-12">
+										<div id="calendrier"></div>
+									</div>
+									<div class="clearfix visible-md-block"></div>
+									<!-- BTN_HAUT RENDEZ-VOUS -->
+									<div class="col-md-12" style="margin-top: 20px;">
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<fieldset class="formulaire">
+													<div class="row">
+														<div class="col-md-12">
+														<div class="form-group-sm">
+														<label for="typeRv">Type de rendez-vous :</label>
+																<select th:field="*{typeRv}" id="typeRv"
+																	name="typeRv" class="form-control">
+																	<option
+																		th:each="type : ${T(com.bafal.dev.patient.web.commun.TypeRendezVous).values()}"
+																		th:value="${type.name()}" th:text="${type.nom}"></option>
+																</select>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group-sm">
+																<div class="input-group date" id="dateDebut">
+																	<input type='text' class="form-control"
+																		name="dateDebut" th:field="*{plageHoraire.dateDebut}"
+																		placeholder="Date Debut" /> <span
+																		class="input-group-addon"><span
+																		class="fa fa-calendar"></span> </span>
+																</div>
+															</div>
+															<div class="form-group-sm">
+																<div class="input-group date" id="debut">
+																	<input type='text' class="form-control" name="debut"
+																		th:field="*{plageHoraire.heureDebut}"
+																		placeholder="Heure Debut" /> <span
+																		class="input-group-addon"><span
+																		class="glyphicon glyphicon-time"></span> </span>
+																</div>
+															</div>
+															<div class="form-group-sm">
+																<select th:field="*{dejaPatient}" id="dejaPatient"
+																	name="dejaPatient" class="form-control">
+																	<option
+																		th:each="type : ${T(com.bafal.dev.patient.web.bean.TypeBoolean).values()}"
+																		th:value="${type.valeur}" th:text="${type.nom}"></option>
+																</select>
+															</div>
+															<div class="form-group-sm">
+																<input size="50" id="nom" type="text" name="nom"
+																	th:field="*{nom}" placeholder="Nom de famille"
+																	class="form-control" th:class="form-control" /> <span
+																	class="iconDroite"><span class="fa fa-user icon"></span></span>
+															</div>
+														</div>
+														<div class="col-md-6">
+															<div class="form-group-sm">
+																<div class="input-group date" id="dateFin">
+																	<input type='text' class="form-control"
+																		name="dateFin" th:field="*{plageHoraire.dateFin}"
+																		placeholder="Date Fin" /> <span
+																		class="input-group-addon"><span
+																		class="fa fa-calendar"></span> </span>
+																</div>
+															</div>
+															<div class="form-group-sm">
+																<div class="input-group date" id="fin">
+																	<input type='text' class="form-control" name="fin"
+																		th:field="*{plageHoraire.heureFin}" placeholder="Heure Fin" />
+																	<span class="input-group-addon"><span
+																		class="glyphicon glyphicon-time"></span> </span>
+																</div>
+															</div>
+															<div class="form-group-sm">
+																<button type="button" name="choisir"
+																	class="btn btn-default"
+																	th:disabled="${!rv.dejaPatient}">Choisir</button>
+															</div>
+															<div class="form-group-sm">
+																<input size="50" id="prenom" type="text" name="prenom"
+																	th:field="*{prenom}" placeholder="Prénom"
+																	class="form-control" th:class="form-control" /> <span
+																	class="iconDroite"><span class="fa fa-user icon"></span></span>
+															</div>
+
+														</div>
+														<div class="col-md-12">
+															<div class="form-group-sm">
+																<textarea rows="4" id="notes" name="notes"
+																	th:field="*{notesRv}"
+																	placeholder="Notes pertinentes ..."
+																	class="form-control" th:class="form-control"></textarea>
+															</div>
+														</div>
+													</div>
+
+												</fieldset>
+											</div>
+											<div class="panel-footer">
+												<div style="text-align: right;">
+													<button type="submit" name="annuler"
+														class="bouton-register normal">Annuler</button>
+													<button type="submit" accesskey="l" class="btn-submit">Enregistrer</button>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+				<!-- FIN_FORMULAIRE -->
+			</div>
+		</section>
+		<br />
+		<footer>
+			<div>
+				<br />
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

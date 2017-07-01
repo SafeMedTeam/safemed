@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="dmewarning (type, message, displayDetails)" class="alert alert-dismissable" th:classappend="'alert-' + ${type}">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<h4><i class="icon fa fa-warning"></i> Erreur!</h4>
+		<span th:text="${message}">Veuillez corriger les erreurs suivantes </span>
+		<ul th:if="${displayDetails == 'YES'}">
+		  <li th:each="err : ${#fields.errors('*')}" th:text="${err}" />
+		</ul>
+	</div>
+</body>
+</html>
+
+   <!-- UTILISER POUR AFFICHER DES ERREURS -->
+   <!-- 
+    <th:block th:if="${#fields.hasErrors('${utilisateurForm.*}')}">
+        <div th:replace="commun/warning :: warning (type='danger', message='Le formulaire contient des erreurs. Veuillez les corriger.')">Alert</div>
+    </th:block> 
+    -->

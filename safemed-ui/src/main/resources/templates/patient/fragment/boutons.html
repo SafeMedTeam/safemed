@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="toolbar">
+		<div style="text-align: right; margin-bottom: 10px; margin-top: 10px;">
+			<button th:if="${patient.id == null}" type="submit" name="annuler" class="bouton-register normal">Annuler</button>
+            <a th:unless="${patient.id == null}" th:href="@{'/patient/' + ${patient.entite.matricule} + '/detail'}" class="btn btn-link">Retour au détail du patient</a>
+			<button type="submit" name="save" accesskey="l" class="btn-submit">Enregistrer</button>
+		</div>
+	</div>
+</body>
+</html>

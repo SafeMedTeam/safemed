@@ -1,0 +1,74 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <div th:fragment="lignePatient">
+        <table class="table-simple entete-patient">
+            <colgroup>
+                <col style="width: 8%;" />
+                <col style="width: 12%;" />
+                <col style="width: 35%;" />
+                <col style="width: 12%;" />
+                <col style="width: 33%;" />
+            </colgroup>
+           <tbody>
+            <tr>
+                <td rowspan="3"><span class="img-profil img-vignette"> <img
+                        id="avatar" class="editable img-responsive"
+                        src="../../../webapp/bootstrap/css/img/profil2.jpg"
+                        th:src="@{/bootstrap/css/img/profil2.jpg}" alt="profil"></img>
+                </span></td>
+                <td style="text-align: right;">
+                    <p>
+                        <strong><span th:text="${patient.nom}">Diagne</span>,</strong>
+                    </p>
+                </td>
+                <td colspan="3">
+                    <p class="pull-left">
+                        <strong><span th:text="${patient.prenom}">Ndeye
+                                Fatou</span>, <span th:text="${patient.civilite}">Mme</span>
+                        </strong>
+                    </p>
+                    <a class="pull-right" title="Sommaire du patient" href="#"
+                                            th:href="@{'/patient/sommaireclinique/' + ${patient.matricule}}" >
+                                            <i class="fa fa-folder-open"></i></a> 
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;"><p class="text-muted"><small>Matricule</small></p>
+                    </td>
+                <td>
+                    <p><small th:text="${patient.matricule}">DINDF012798267672</small></p>
+                </td>
+                <td style="text-align: right;"><p class="text-muted">
+                        <small>Téléphone</small>
+                    </p></td>
+                <td>
+                    <p><small th:text="${patient.telephone}">418-582-0147</small></p>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right;"><p class="text-muted">
+                        <small>Né(e) le</small>
+                    </p></td>
+                <td>
+                    <p><small th:text="${patient.dateNaissance}">18-02-2012</small></p>
+                </td>
+                <td style="text-align: right;"><p class="text-muted">
+                        <small>Adresse</small>
+                    </p></td>
+                <td><p>
+                        <small><span th:text="${patient.adresse}">4390, Rue
+                                Frank Farrel</span>&nbsp;-&nbsp;<span th:text="${patient.ville}">Québec</span>&nbsp;-&nbsp;<span
+                            th:text="${patient.codePostal}">G1L3M7</span>
+                        </small>
+                    </p>
+                </td>
+            </tr>
+         </tbody>
+        </table>
+  </div>
+</body>
+</html>

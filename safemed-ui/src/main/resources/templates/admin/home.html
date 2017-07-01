@@ -1,0 +1,206 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Page d'Administration</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" href="../../../../safemedtheme/bootstrap/css/bootstrap.min.css" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/fontawesome/css/font-awesome.min.css" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/ionicons/css/ionicons.min.css" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/AdminLTE.min.css" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/skins/_all-skins.min.css" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/iCheck/flat/blue.css" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}"/>
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/datepicker/datepicker3.css" th:href="@{/safemedtheme/plugins/datepicker/datepicker3.css}"/>
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.css" th:href="@{/safemedtheme/plugins/daterangepicker/daterangepicker.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Page d'administration</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li class="active">Administration</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+		<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-offset-1 col-md-10 col-md-offset-right-1">
+			              <div class="row">
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-ios-people-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Utilisateurs
+						              <a class="pull-right" href="#" th:href="@{/admin/personnel/liste}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Creation d'utilisateurs et gestion de leur niveau d'acc&egrave;s</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-ios-calendar-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Agenda
+						              <a class="pull-right" href="#" th:href="@{/admin/agenda}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Parametrez les caracteristiques des agendas</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="fa fa-stethoscope"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Motifs de consultation
+						              <a class="pull-right" href="#" th:href="@{/admin/motifs}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Personnalisez les motifs de consultation pour les prises de rendez-vous</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="fa fa-hospital-o"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Services m&eacute;dicaux
+						              <a class="pull-right" href="#" th:href="@{/admin/services}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Configurez les services m&eacute;dicaux</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion-ios-cart-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Facturation
+						              <a class="pull-right" href="#" th:href="@{/admin/facturation}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Configurez de la facturation, des tarifs, des codes de service  </small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-ios-chatboxes-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Notification
+						              <a class="pull-right" href="#" th:href="@{/admin/notification}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">G&eacute;rer les notifications, frequences</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="fa fa-bar-chart"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Statistiques
+						              <a class="pull-right" href="#" th:href="@{/admin/statistiques}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">G&eacute;n&eacute;rez les rapports de reddition, bilan annuel,</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion-ios-cloud-upload-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Extracteur de M&eacute;tadonn&eacute;es
+						              <a class="pull-right" href="#" th:href="@{/admin/metadata}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Extraire les DME des patients, transfert de dossiers, importer des donn&eacute;es</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-ios-list-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Domaines de valeurs
+						              <a class="pull-right" href="#" th:href="@{/admin/domaines}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Ajoutez, modifiez les domaines de valeurs </small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-mouse"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">RDV par Internet
+						              <a class="pull-right" href="#" th:href="@{/admin/rdvinternet}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Activez la prise de rendez-vous des patients par Internet</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              	<div class="col-md-4 col-sm-6 col-xs-12">
+			              		<div class="info-box box-admin">
+						            <span class="info-box-icon"><i class="ion ion-ios-paper-outline"></i></span>
+						            <div class="info-box-content">
+						              <span class="info-box-text">Ordonnances
+						              <a class="pull-right" href="#" th:href="@{/admin/ordonnances}"><i class="ion ion-chevron-right"></i></a>
+						              </span>
+						              <span class="info-box-sous-titre"><small class="text-muted">Configurer le prescripteur d'ordonnances du DME</small></span>
+						            </div>
+						          </div>
+			              	</div>
+			              </div>
+                	</div>
+                </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../../../safemedtheme/bootstrap/js/bootstrap.min.js" th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<!-- daterangepicker -->
+<script src="../../../../safemedtheme/plugins/moment/moment.min.js" th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<script src="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.js" th:src="@{/safemedtheme/plugins/daterangepicker/daterangepicker.js}"></script>
+<!-- datepicker -->
+<script src="../../../../safemedtheme/plugins/datepicker/bootstrap-datepicker.js" th:src="@{/safemedtheme/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<!-- Slimscroll -->
+<script src="../../../../safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../../../../safemedtheme/dist/js/app.min.js" th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+</body>
+</html>

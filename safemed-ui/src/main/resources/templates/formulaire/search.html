@@ -1,0 +1,147 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Dossier m&eacute;dical ::. Résultat recherche</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/fontawesome/css/font-awesome.css"
+	th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+	th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+	th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+	<div id="page">
+		<header>
+			<div th:replace="fragment/top :: header"></div>
+		</header>
+		<section id="contenu">
+
+			<!-- NOUVEAU  -->
+
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-8">
+						<!-- FORMULAIRE -->
+						<div class="row">
+							<!-- 1 -->
+							<div class="col-md-12"
+								style="background-color: #F5F5F5; border-radius: 4px;">
+								<form id="avance" action="#" th:action="@{/searchavance}" th:object="${filtreavance}" method="get">
+									<fieldset class="formulaire">
+										<legend>Recherche avanc&eacute;e</legend>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group-sm">
+													<label for="noDossier">No de dossier :</label> <input
+														size="50" th:field="*{noDossier}" id="noDossier"
+														type="text" name="noDossier" class="form-control" />
+												</div>
+												<div class="form-group-sm">
+													<label for="prenom">Pr&eacute;nom :</label> <input
+														size="50" id="prenom" type="text" name="prenom"
+														th:field="*{prenom}" placeholder="Prénom"
+														class="form-control" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group-sm">
+													<label for="dateNaissance">Date Naissance :</label> <input
+														size="50" id="dateNaissance" type="text"
+														name="dateNaissance" th:field="*{dateNaissance}"
+														placeholder="JJ/MM/AAAA" class="form-control" /> <span
+														class="iconDroite"><span
+														class="fa fa-calendar icon"></span></span>
+												</div>
+												<div class="form-group-sm">
+													<label for="nom">Nom :</label> <input size="50" id="nom"
+														type="text" name="nom" th:field="*{nom}"
+														placeholder="Nom de famille" class="form-control" />
+												</div>
+											</div>
+										    <div class="col-md-12">
+										    <button type="submit" class="bouton-smt"><span class="fa fa-search icon"></span></button>
+										    </div>
+										</div>
+									</fieldset>
+								</form>
+							</div>
+							<!-- 1_FIN -->
+							<div class="clearfix visible-md-block"></div>
+							<!-- 2 -->
+							<div class="col-md-12"
+								style="background-color: #F5F5F5; border-radius: 4px; margin-top: 15px; padding-top: 15px;">
+								<div class="panel panel-default">
+									<div class="panel-body">
+										<p>Tableau de resultat</p>
+									</div>
+									<!-- Table -->
+									<table class="table">
+										<thead>
+											<tr>
+												<th style="width: 10%;">#</th>
+												<th style="width: 15%;">N&omicron; Dossier</th>
+												<th style="width: 25%;">Prénom</th>
+												<th style="width: 25%;">Nom</th>
+												<th style="width: 25%;">Date de naissance</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr th:each="patient, patientStat : ${page.content}"
+												th:classappend="${patientStat.odd}? 'odd'">
+												<td th:text="${patientStat.count}">1</td>
+												<td th:text="${patient.codePatient}">tetttette</td>
+												<td th:text="${patient.identite.prenom}">N12344</td>
+												<td th:text="${patient.identite.nom}">Oui</td>
+												<td th:text="${patient.identite.dateNaissance}"></td>
+											</tr>
+											<tr
+												th:if="${ page.content == null || #lists.isEmpty(page.content)}">
+												<td colspan="5" style="text-align: center;">
+													<p class="text-warning">
+														<small>Aucun r&eacute;sultat n'a &eacute;t&eacute; trouv&eacute;.
+															Veuillez affiner votre recherche! </small>
+													</p>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div th:replace="fragment/pagination :: pagebar"></div>
+							</div>
+						</div>
+
+					</div>
+					<!-- FIN_FORMULAIRE -->
+					<div class="col-xs-4">
+						<fieldset class="formulaire">
+							<legend>Partie PUB</legend>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+
+		</section>
+		<br />
+		<footer>
+			<div>
+				<br />
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+      <div class="modal" id="modalSignes" tabindex="-1" role="dialog" 
+           aria-labelledby="myModalLabel" aria-hidden="true" th:fragment="formsignes">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Signes vitaux</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form">
+                <div class="row">
+                <div class="form-group col-md-10 col-md-offset-right-2">
+                  <label for="tension">Tension arterielle</label>
+                  <div class="input-group">
+	                 <input type="text" class="form-control" id="tension" placeholder="Systolique"/>
+	                 <span class="input-group-addon">/</span>
+	                 <input type="text" class="form-control" id="tension" placeholder="Diastolique"/>
+	                 <span class="input-group-addon">mmHg</span>
+	              </div>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="poids">Poids corporel</label>
+                  <div class="input-group">
+	                 <input type="text" class="form-control" id="poids" placeholder="Poids"/>
+	                 <span class="input-group-addon">Kg</span>
+	              </div>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="taille">Taille</label>
+                  <div class="input-group">
+	                 <input type="text" class="form-control" id="taille" placeholder="Taille"/>
+	                 <span class="input-group-addon">Cm</span>
+	              </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <label for="priorite">Priorit&eacute;</label>
+	              <input type="text" class="form-control" id="imc" placeholder="IMC" disabled="disabled"/> 
+                </div>
+                <div class="col-md-12"> 
+                	<p class="text-muted">
+	                 L'IMC est l'indicateur le plus fiable pour calculer la corpulence
+	                </p> 
+	                &nbsp;<span class="text-muted"><i class="fa fa-circle text-aqua"></i> &nbsp;&nbsp;<strong>- de 18.5</strong>&nbsp;&nbsp;  Maigreur</span> <br/>
+	                &nbsp;<span class="text-muted"><i class="fa fa-circle text-green"></i> &nbsp;&nbsp;<strong>18.5 &agrave; 24.9</strong>&nbsp;&nbsp; Corpulence normale</span><br/>
+	                &nbsp;<span class="text-muted"><i class="fa fa-circle text-yellow"></i> &nbsp;&nbsp;<strong>25 &agrave; 29.9</strong>&nbsp;&nbsp; Surpoids</span><br/>
+	                &nbsp;<span class="text-muted"><i class="fa fa-circle text-orange"></i> &nbsp;&nbsp;<strong>30 &agrave; 34.9</strong>&nbsp;&nbsp; Ob&eacute;sit&eacute; mod&eacute;r&eacute;e</span><br/>
+	                &nbsp;<span class="text-muted"><i class="fa fa-circle text-red"></i>  &nbsp;&nbsp;<strong>+ de 40</strong>&nbsp;&nbsp; Ob&eacute;sit&eacute; morbide</span><br/>
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="pulsation">Pulsation</label>
+	              <input type="text" class="form-control" id="pulsation" /> 
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="temperature">Temp&eacute;rature</label>
+                  <div class="input-group">
+	                 <input type="text" class="form-control" id="temperature" />
+	                 <span class="input-group-addon"><sup>o</sup>C</span>
+	              </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-5">
+                  <label for="datePrise">Date Prise</label>
+	              <div class="input-group">
+	                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span> 
+	                 <input type="text" class="form-control" id="datePrise" placeholder="JJ-MM-AAAA HH:mm" />
+	              </div> 
+                </div>
+                <div class="clearfix"></div>
+                <div class="form-group col-md-12">
+                  <label for="description">Notes</label>
+                  <textarea class="form-control" rows="3" placeholder="Notes ici ..."></textarea>
+                </div>
+                </div>
+            </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-info">Enregistrer</button>
+              </div>
+            </div>
+          </div>
+      </div>
+</body>
+</html>

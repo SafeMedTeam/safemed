@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div th:fragment="toolbar_search">
+		<div style="text-align: right; margin-bottom: 10px; margin-top: 10px;">
+            <a href="#" th:href="@{ '/patient/edit/nouveau'}" class="bouton-register normal">
+                 <i class="fa fa-user-plus fa-fw"></i>
+            </a>
+			<button type="submit" name="reset" class="bouton-register normal">R&eacute;initialiser </button>
+			<button type="submit" name="save" class="btn-submit">Rechercher</button>
+		</div>
+	</div>
+</body>
+</html>

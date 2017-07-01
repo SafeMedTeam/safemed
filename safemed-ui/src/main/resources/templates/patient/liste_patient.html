@@ -1,0 +1,221 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Recherche de Patients</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}"/>
+  
+     <!-- Datatables -->
+    <link th:href="@{/safemedtheme/plugins/table/bs/css/dataTables.bootstrap.min.css}" rel="stylesheet"/>
+		  
+    <link th:href="@{/safemedtheme/plugins/table/buttons-bs/css/buttons.bootstrap.min.css}" rel="stylesheet"/>
+		  
+    <link th:href="@{/safemedtheme/plugins/table/fixedheader-bs/css/fixedHeader.bootstrap.min.css}" rel="stylesheet"/>
+		  
+    <link th:href="@{/safemedtheme/plugins/table/responsive-bs/css/responsive.bootstrap.min.css}" rel="stylesheet"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Liste des patients</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#"> Patient</a></li>
+        <li class="active">Recherche</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+		<div class="col-md-12">
+           <div class="box box-info collapsed-box">
+		   <form class="form" th:action="@{result}" th:object="${filtrePatient}" method="post">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recherche avanc&eacute;e
+              	<small>Cliquez sur le [+] pour afficher les criteres de recherche</small>
+              </h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+            </div>
+              <div class="box-body">
+                <div class="form-group col-md-3 col-xs-6">
+                  <label for="noDossier">No de Dossier</label>
+                  <input  th:field="*{noDossier}" type="text" class="form-control" id="noDossier" placeholder="999999999"/>
+                </div>
+                <div class="form-group col-md-3 col-xs-6">
+                  <label for="prenom">Prenom</label>
+                  <input  th:field="*{prenom}" type="text" class="form-control" id="prenom" placeholder="Prenom"/>
+                </div>
+                <div class="form-group col-md-3 col-xs-6">
+                  <label for="nom">Nom de Famille</label>
+                  <input  th:field="*{nom}" type="text" class="form-control" id="nom" placeholder="Nom"/>
+                </div>
+                <div class="form-group col-md-3 col-xs-6">
+                  <label for="telephone">Telephone</label>
+                  <input  th:field="*{telephone}" type="text" class="form-control" id="telephone" placeholder="77 XXX XX XX"/>
+                </div>
+              </div>
+              <div class="box-footer">
+                <button type="reset" class="btn btn-default">R&eacute;initialiser</button>
+                <button type="submit" class="btn btn-info pull-right">Rechercher</button>
+              </div>
+			  </form>
+          </div>
+          
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Liste des patients </h3>
+              <div class="box-tools pull-right">
+                <a  href="#" th:href="@{/patient/edit/nouveau}" class="btn btn-info"><i class="fa fa-user-plus"></i>&nbsp; Nouveau Patient</a>
+              </div>
+            </div>
+              <div class="box-body ">
+                 <table id="table_patient" class="table table-hover">
+                <thead>
+                <tr>
+                  <th style="width: 40px">#</th>
+				  <th style="width: 15px"></th>
+                  <th>Profil</th>
+                  <th>Telephone</th>
+                  <th>Adresse</th>
+                  <th style="width: 50px">Actions</th>
+                </tr>
+                </thead> 
+                <tbody>
+                <tr th:each="pat : ${session.patient_search_liste}">
+                  <td>
+                  	<img class="img-circle img-sm" src="../../../../safemedtheme/dist/img/profil10.jpg" th:src="@{/safemedtheme/dist/img/profil10.jpg}" alt="User Image"/>
+                  </td>
+				  <td>
+					<i th:if="${pat.civilite == T(com.bafal.dev.patient.modele.base.enumeration.Civilite).MR}" class="ion ion-male text-aqua" style="font-size: 120%;"></i>
+					<i th:unless="${pat.civilite == T(com.bafal.dev.patient.modele.base.enumeration.Civilite).MR}" class="ion ion-female text-maroon" style="font-size: 120%;"></i>
+				  </td>
+                  <td>
+                    <a href="#" th:href="@{'/patient/edit/' + ${pat.noDossier}}" style="font-weight: bold;"><span th:text="${pat.nomComplet}"></span> </a>, <small style="font-style: italic;"></small>
+                    <br/>
+                    <small><span class="text-muted" th:text="${'No Dossier : ' + pat.noDossier}">No Dossier : 0011109XE</span></small>
+                    <br/>
+                    <small><span class="text-muted" th:text="${'Age : ' + pat.ageAffichable}">Age : 32 ans</span></small>
+                  </td>
+                  <td><i class="ion ion-android-call"></i>&nbsp; <span th:text="${pat.telephone}">(+221) 77 501-89-76</span></td>
+                  <td><i class="ion ion-ios-location"></i>&nbsp; <span th:text="${pat.adresse}">Dakar, Senegal</span></td>
+                  <td>
+                  	<div class="btn-group">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a href="#" th:href="@{'/patient/edit/' + ${pat.noDossier}}">&Eacute;diter</a></li>
+                          <li><a href="#" th:href="@{/agenda/patient}">Rendez-vous</a></li>
+                          <li><a href="#" th:href="@{'/patient/sommaireclinique/' + ${pat.noDossier}}">Dossier Clinique</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              </div>
+              <div class="box-footer">
+                
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+
+<script th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<!-- Slimscroll -->
+<script th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+
+	    <!-- Datatables -->
+		<script th:src="@{/safemedtheme/plugins/table/datatables/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/bs/js/dataTables.bootstrap.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/buttons/js/dataTables.buttons.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/buttons-bs/js/buttons.bootstrap.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/buttons/js/buttons.flash.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/buttons/js/buttons.html5.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/buttons/js/buttons.print.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/fixedheader/js/dataTables.fixedHeader.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/keytable/js/dataTables.keyTable.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/responsive/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/responsive-bs/js/responsive.bootstrap.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/jszip/dist/jszip.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/pdfmake/build/pdfmake.min.js}"></script>
+    <script th:src="@{/safemedtheme/plugins/table/pdfmake/build/vfs_fonts.js}"></script> 
+			
+<!-- AdminLTE App -->
+<script th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<script>
+  $(function () {
+    $('#table_patient').DataTable({
+      "autoWidth": false,
+      "language": {
+			"sProcessing":     "Traitement en cours...",
+		    "sSearch":         "Filtrer &nbsp;:",
+		    "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+		    "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+		    "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+		    "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+		    "sInfoPostFix":    "",
+		    "sLoadingRecords": "Recherche en cours...",
+		    "sZeroRecords":    "Aucun patient trouv&eacute;",
+		    "sEmptyTable":     "Aucun patient",
+		    "oPaginate": {
+		        "sFirst":      "Premier",
+		        "sPrevious":   "Pr&eacute;c&eacute;dent",
+		        "sNext":       "Suivant",
+		        "sLast":       "Dernier"
+		    },
+		    "oAria": {
+		        "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+		        "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+		    }
+  }
+    });
+  });
+</script>
+</body>
+</html>

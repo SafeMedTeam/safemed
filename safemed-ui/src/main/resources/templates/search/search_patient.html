@@ -1,0 +1,254 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<title>Dossier m&eacute;dical ::. Nouveau Patient</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/fontawesome/css/font-awesome.css"
+    th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/bootstrap.min.css"
+    th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+    th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/dashboard.css"
+    th:href="@{/bootstrap/css/dashboard.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/metisMenu/metisMenu.min.css"
+    th:href="@{/metisMenu/metisMenu.min.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/table/bootstrap/3/dataTables.bootstrap.css"
+    th:href="@{/table/bootstrap/3/dataTables.bootstrap.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/table/css/datatables.css"
+    th:href="@{/table/css/datatables.css}" />
+
+<link
+    href="//fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap-date/css/bootstrap-datetimepicker.min.css"
+    th:href="@{/bootstrap-date/css/bootstrap-datetimepicker.min.css}" />
+
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+    th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+
+<script
+    src="../../../webapp/bootstrap-date/js/moment/moment-with-locales.min.js"
+    th:src="@{/bootstrap-date/js/moment/moment-with-locales.min.js}"></script>
+
+<script
+    src="../../../webapp/bootstrap-date/js/bootstrap-datetimepicker.min.js"
+    th:src="@{/bootstrap-date/js/bootstrap-datetimepicker.min.js}"></script>
+<script src="../../../webapp/bootstrap/js/dashboard.js"
+    th:src="@{/bootstrap/js/dashboard.js}"></script>
+<script src="../../../webapp/metisMenu/metisMenu.min.js"
+    th:src="@{/metisMenu/metisMenu.min.js}"></script>
+
+<script src="../../../webapp/table/js/datatables.min.js"
+    th:src="@{/table/js/datatables.min.js}"></script>
+<script
+    src="../../../webapp/table/bootstrap/3/dataTables.bootstrap.min.js"
+    th:src="@{/table/bootstrap/3/dataTables.bootstrap.min.js}"></script>
+<script type="text/javascript">
+    $(function() {
+        $('#dateNaissance').datetimepicker({
+            locale : 'fr',
+            format : 'DD/MM/YYYY'
+        });
+        $('#dateDebut').datetimepicker({
+            locale : 'fr',
+            format : 'DD/MM/YYYY'
+        });
+        $('#dateFin').datetimepicker({
+            locale : 'fr',
+            format : 'DD/MM/YYYY'
+        });
+        $('#dateNaissance').data("DateTimePicker").maxDate(moment());
+        $("#dateDebut").on("dp.change", function (e) {
+            $('#dateFin').data("DateTimePicker").minDate(e.date);
+        });
+        $("#dateFin").on("dp.change", function (e) {
+            $('#dateDebut').data("DateTimePicker").maxDate(e.date);
+        });
+
+            $('#tableResult').DataTable({
+                responsive : true,
+                "language" : {
+                    "lengthMenu" : "Affcihez _MENU_ patients par page",
+                    "zeroRecords" : "Aucun résultat trouvé",
+                    "info" : "Page _PAGE_ de _PAGES_",
+                    "infoEmpty" : "Aucun patient",
+                    "infoFiltered" : "(Filtré sur _MAX_ résultats totaux)"
+                }
+            });
+    });
+</script>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <div th:replace="fragment/top :: header"></div>
+    </header>
+    <section id="page-wrapper" class="page-patient">
+    <form action="#" th:action="@{/search/patient/result}" th:object="${entity}" method="post">
+      <div style="margin: 0 -30px">
+        <ol class="breadcrumb">
+          <li><a href="/">Acceuil</a></li>
+          <li><a href="/search/patient">Recherche</a></li>
+          <li class="active">Par Patient</li>
+        </ol>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="page-header page-entete">Recherche par patient</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          
+            <div class="panel panel-default">
+              <div class="panel-heading">
+              </div>
+              <div class="panel-body">
+
+                <div class="row">
+                    <div th:if="${#fields.hasAnyErrors()}" class="alert alert-warning alert-dismissible" role="alert" style="margin: 15px !important;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Erreurs!</strong> Le formulaire contient <span class="badge" th:text="${#lists.size(#fields.errors('*'))}">reree</span> erreurs. Veuillez les corriger.
+                   </div>
+
+                  <!-- 1 -->
+                  <div class="col-md-12">
+                    <fieldset class="formulaire">
+                      <legend>Crit&egrave;re de recherche </legend>
+                      <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group-sm">
+                              <select th:field="*{civilite}"
+                                id="civilite" name="civilite" class="form-control">
+                                <option value="">Tous</option>
+                                <option th:each="genre : ${T(com.bafal.dev.patient.web.bean.Genre).values()}"
+                                  th:value="${genre.valeur}" th:text="${genre.nom}" >
+                                </option>
+                              </select>
+                            </div>
+                                                  
+                            <!-- DATE NAISSANCE -->
+                            <div class="form-group-sm">
+                              <input size="50" id="dateNaissance"
+                                type="text" name="dateNaissance" th:field="*{dateNaissance}"
+                                placeholder="Date de Naissance (JJ/MM/AAAA)" class="form-control"/> 
+                              <span class="iconDroite" ><span class="fa fa-calendar icon"></span></span>
+                            </div>
+                            <div class="form-group-sm">
+                            <select th:field="*{pays}" id="pays"
+                              name="pays" class="form-control">
+                              <option value="">Tous</option>
+                              <option th:each="pay : ${listePays}" th:value="${pay.id.valeur}"
+                                th:text="${pay.descriptionFrancais}">
+                              </option>
+                            </select>
+                          </div>
+                                                        
+                        </div>
+                        
+                        <div class="col-md-4">
+                         <!-- NOM -->
+                          <div class="form-group-sm">
+                            <input  id="nom" type="text" name="nom"
+                              th:field="*{nom}" placeholder="Nom de famille" class="form-control"
+                              th:class="form-control" th:title="Nom"/> 
+                            <span class="iconDroite"><span class="fa fa-user icon"></span></span>
+                          </div>
+                          <div class="form-group-sm"
+                            th:classappend="${#fields.hasErrors('telephone')}? 'has-error'">
+                            <input size="20" id="telephone" type="text"
+                              name="telephone" th:field="*{telephone}" placeholder="(+221) 77 582 77 55"
+                              class="form-control" /> 
+                            <span class="iconDroite"><span class="fa fa-phone icon"></span></span>
+                          </div>
+                          <div class="form-group-sm" >
+                            <input th:field="*{ville}" placeholder="Ville" 
+                              id="ville" type="text" name="ville" class="form-control" />
+                          </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                        <!-- PRENOM -->
+                          <div class="form-group-sm">
+                            <input id="prenom" type="text" name="prenom"
+                              th:field="*{prenom}" placeholder="Prénom" class="form-control"
+                              th:class="form-control" /> 
+                                <span class="iconDroite"><span class="fa fa-user icon"></span></span>
+                            </div>
+                            <div class="form-group-sm"
+                            th:classappend="${#fields.hasErrors('courriel')}? 'has-error'">
+                            <input  id="courriel" type="text"
+                              name="courriel" th:field="*{courriel}" placeholder="email@domaine.sn"
+                              class="form-control"/> 
+                            <span class="iconDroite"><span class="fa fa-envelope icon"></span></span>
+                          </div>
+                          
+                        </div>
+                        <div class="col-md-8">
+                        <div class="row">
+                               <div class="col-md-5">
+                                <div class="form-group-sm">
+                                    <input size="50" id="dateDebut"
+                                      type="text" name="dateDebut" th:field="*{dateDebut}"
+                                      placeholder="Date de Debut (JJ/MM/AAAA)" class="form-control"/> 
+                                    <span class="iconDroite" ><span class="fa fa-calendar icon"></span></span>
+                                  </div>
+                              </div>
+                              <div class="col-md-2" style="text-align: center;">
+                                au
+                              </div>
+                              <div class="col-md-5">
+                                <div class="form-group-sm">
+                                    <input id="dateFin"
+                                      type="text" name="dateFin" th:field="*{dateFin}"
+                                      placeholder="Date de Fin (JJ/MM/AAAA)" class="form-control"/> 
+                                    <span class="iconDroite" ><span class="fa fa-calendar icon"></span></span>
+                                  </div>
+                              </div>
+                        </div>
+                        </div>
+                        <div class="col-md-4"></div>
+                        <div class="col-md-12">
+                            <div th:replace="search/fragment/boutons :: toolbar_search"></div>
+                        </div>
+                      </div>  
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12" th:unless="${#lists.isEmpty(session.search_result_patient)}">
+                    <div class="resultats">
+                        <div th:replace="search/fragment/search_resultat :: result"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      </form>
+    </section>
+    <br />
+    <footer>
+      <div>
+        <br />
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

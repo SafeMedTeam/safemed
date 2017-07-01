@@ -1,0 +1,125 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+      <div class="modal" id="modalrv"  role="dialog" 
+           aria-labelledby="myModalLabel" aria-hidden="true" th:fragment="nouveaurv">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Nouveau</h4>
+				</div>
+				<div id="content"></div>
+
+            </div>
+          </div>
+      </div>
+
+	<form role="form" th:action="@{/agenda/schedule/rv/save}" th:object="${rv}" method="post" th:fragment="rv_content"
+	      th:with="edition=${rv.id != null}">
+		              <div class="modal-body">                
+                <div class="form-group">
+                  <label for="medecin" class="col-sm-3 control-label">Agenda</label>
+                  <div class="input-group col-sm-7 col-sm-offset-right-2">
+	                <input type="text" class="form-control" id="medecin" placeholder="Agenda" disabled="disabled"/>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="typesRv" class="col-sm-3 control-label">Motif de consultation</label>
+                  <div class="input-group col-sm-7 col-sm-offset-right-2">
+	                <span class="input-group-addon"><i class="fa fa-check-square-o"></i></span>
+	                <select
+						th:field="*{typesRv}" id="typesRv" name="typesRv" class="form-control select2-typeRv" multiple="multiple" 
+						style="width: 100%;" data-placeholder="Motif de Consultation ...">
+						<option th:value="NULL"></option>
+						<option
+							th:each="type : ${T(com.bafal.dev.patient.modele.base.enumeration.TypeRendezVous).values()}"
+							th:value="${type}" th:text="${type.nom}"></option>
+					</select>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="statut" class="col-sm-3 control-label">Statut</label>
+                  <div class="input-group col-sm-7 col-sm-offset-right-2">
+	                <select
+						th:field="*{statut}" id="statut" name="statut" class="form-control" th:disabled="${!edition}">
+						<option
+							th:each="stat : ${T(com.bafal.dev.patient.modele.base.enumeration.StatutRV).values()}"
+							th:value="${stat}" th:text="${stat.nom}"></option>
+					</select>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="jour" class="col-sm-3 control-label">Jour</label>
+                  <div class="input-group col-sm-4 col-sm-offset-right-5" data-toggle="tooltip" title="Format : JJ/MM/AAAA">
+	                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+	                <input th:field="*{jour}" id="jour" type="text" class="form-control" placeholder="JJ-MM-AAAA"/>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="heureDebut" class="col-sm-3 control-label">D&eacute;but</label>
+                  <div class="input-group col-sm-4 col-sm-offset-right-5">
+	                <span class="input-group-addon"><i class="ion ion-clock"></i></span>
+	                <input th:field="*{heureDebut}" id="heureDebut" type="text" class="form-control" placeholder="HH:mm"/>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="duree" class="col-sm-3 control-label">Dur&eacute;e</label>
+                  <div class="input-group col-sm-4 col-sm-offset-right-5">
+	                <span class="input-group-addon"><i class="ion ion-clock"></i></span>
+	                <input th:field="*{duree}" type="text" class="form-control" />
+	                <span class="input-group-addon" th:text="${'min'}" style="background: #f4f4f4;"></span> 
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="patient" class="col-sm-3 control-label">Patient</label>
+                  <div class="input-group col-sm-7 col-sm-offset-right-2">
+	                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+	                <select th:field="*{idDossier}" class="form-control select2-rv" id="idDossier" data-placeholder="Patient" style="width: 100%;">
+			                  
+			        </select>
+	                <span class="input-group-btn">
+                      <a class="btn btn-default btn-flat" href="#" th:href="@{/patient/edit/nouveau}" data-toggle="tooltip" title="Ajouter un Patient"><i class="fa fa-user-plus"></i></a>
+                    </span>
+	              </div>
+                </div>
+                <div class="form-group">
+                  <label for="description" class="col-sm-3 control-label">Description</label>
+                  <div class="input-group col-sm-7 col-sm-offset-right-2">
+	                <textarea class="form-control" rows="3" placeholder="Description ici ..."></textarea>
+	              </div>
+                </div>
+               
+              </div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default pull-left dme_event_close" data-dismiss="modal">Fermer</button>
+			<button type="submit" class="btn btn-info dme_event_submit">Enregistrer</button>
+		</div>
+		
+		<script>
+		  $(function () {
+		    $('#jour').datetimepicker({
+		        locale : 'fr',
+		        format : 'DD/MM/YYYY',
+		        useCurrent: false
+		    });
+		    $('#heureDebut').datetimepicker({
+		        locale : 'fr',
+		        format : 'HH:mm',
+		        useCurrent: false
+		    });
+		    
+		    $(".select2-typeRv").select2();
+		    selectRemotePatient('.select2-rv', '#modalrv', '/json/task/patients');
+		    
+		  });
+		</script>
+	</form>
+</body>
+</html>

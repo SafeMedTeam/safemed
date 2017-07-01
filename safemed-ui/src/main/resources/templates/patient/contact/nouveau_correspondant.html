@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <div th:fragment="ajoutCorrespondant" th:remove="tag">
+    <td><div class="form-group-sm">
+        <select th:field="*{correspondants[__${correspondantStat.index}__].entite.civilite}"
+          class="form-control">
+          <option th:each="genre : ${T(com.bafal.dev.patient.web.bean.Genre).values()}" th:value="${genre.valeur}"
+            th:text="${genre.valeur}"
+          ></option>
+        </select>
+      </div></td>
+    <td><div class="form-group-sm" th:classappend="${#fields.hasErrors('correspondants[__${correspondantStat.index}__].entite.prenom')}? 'has-error'">
+        <input type="text" class="form-control" placeholder="Prénom"
+          th:field="*{correspondants[__${correspondantStat.index}__].entite.prenom}"/>
+      </div></td>
+    <td><div class="form-group-sm" th:classappend="${#fields.hasErrors('correspondants[__${correspondantStat.index}__].entite.nom')}? 'has-error'">
+        <input type="text" class="form-control" placeholder="Nom de famille"
+          th:field="*{correspondants[__${correspondantStat.index}__].entite.nom}"/>
+      </div></td>
+    <td><div class="form-group-sm" th:classappend="${#fields.hasErrors('correspondants[__${correspondantStat.index}__].entite.telephone')}? 'has-error'">
+        <input type="text" class="form-control" placeholder="(+221) 77 582 77 55"
+          th:field="*{correspondants[__${correspondantStat.index}__].entite.telephone}"/>
+      </div></td>
+    <td>
+    <div class="form-group-sm" th:classappend="${#fields.hasErrors('correspondants[__${correspondantStat.index}__].entite.lienParente')}? 'has-error'">
+                            <select th:field="*{correspondants[__${correspondantStat.index}__].entite.lienParente}"
+                              class="form-control">
+                              <option th:each="lien: ${liensParente}" th:value="${lien.id.valeur}"
+                                th:text="${lien.descriptionFrancais}">
+                              </option>
+                            </select>
+                          </div>
+    </td>  
+    <td>
+      <button type="submit" name="annulerCorrespondant" th:value="${correspondantStat.index}" class="btn-link">Annuler</button>
+    </td>
+    </div>
+</body>
+</html>

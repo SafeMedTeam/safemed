@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/fontawesome/css/font-awesome.css"
+	th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+	th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+	th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:fragment="mdp">
+	<p class="text-warning">
+							<small>Le nouveau mot de passe doit etre d'au minimum de 8 caractères avec une lettre capitale et des chiffres.</small>
+						</p>
+		<div class="row">
+			<div class="col-xs-12 col-sm-2 center"></div>
+			<div class="col-xs-12 col-sm-10">
+				<div>
+					<div class="form-group-sm group-icon">
+						<input size="" id="motDePasseActuel" type="text" name="motDePasse" th:field="*{motDePasseActuel}"
+							class="form-control"  placeholder="Mot de passe actuel"/> <i class="fa fa-lock input-iconDroite"></i>
+					</div>
+					<div class="form-group-sm group-icon" >
+						<input size="50" id="nouveauMotDePasse" type="text" th:field="*{nouveauMotDePasse}"
+							name="nouveauMotDePasse" class="form-control"  placeholder="Nouveau mot de passe"/> <i
+							class="fa fa-lock input-iconDroite"></i>
+					</div>
+					<div class="form-group-sm group-icon" >
+						<input size="50" id="nouveauMotDePasse" type="text"
+							name="confirmationMotDePasse" th:field="*{confirmationMotDePasse}" class="form-control"  placeholder="Confirmation mot de passe"/> <i
+							class="fa fa-lock input-iconDroite"></i>
+					</div>
+					<div class="hr-double"></div> 
+					<div class="barre-btn-mdp">
+						<button type="submit" name="changeMdp" class="btn btn-mdp">Changer Mot de passe</button>
+						<button type="reset" class="btn btn-default">Annuler</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+      <div th:fragment="mdp">
+      <div class="row">
+         <div class="col-md-3"></div>
+         <div class="col-md-6">
+         	<div class="form-group">
+               <label for="mdpCourant">Mot de passe courant</label>
+               <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" id="mdpCourant" /> 
+            </div>
+           </div>
+           <div class="form-group">
+               <label for="nouveauMdp">Nouveau Mot de passe</label>
+               <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" id="nouveauMdp" /> 
+            </div>
+           </div>
+           <div class="form-group">
+               <label for="confirmation">Confirmation</label>
+               <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input type="password" class="form-control" id="confirmation" /> 
+            </div>
+           </div>
+           <div class="">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+           </div>
+         </div>
+         <div class="col-md-3"></div>
+         </div>
+      </div>
+</body>
+</html>

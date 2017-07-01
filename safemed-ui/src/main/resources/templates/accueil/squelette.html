@@ -1,0 +1,79 @@
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <title>S@feMeD | Sommaire - Dossier Patient</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
+  
+  <link rel="icon" href="../../../../safemedtheme/img/educa2.png" type="image/x-icon" th:href="@{/safemedtheme/img/safemed_logo.png}" />
+  
+  <link rel="stylesheet" href="../../../../safemedtheme/bootstrap/css/bootstrap.min.css" th:href="@{/safemedtheme/bootstrap/css/bootstrap.min.css}"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/fontawesome/css/font-awesome.min.css" th:href="@{/safemedtheme/plugins/fontawesome/css/font-awesome.min.css}" />
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/ionicons/css/ionicons.min.css" th:href="@{/safemedtheme/plugins/ionicons/css/ionicons.min.css}" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/AdminLTE.min.css" th:href="@{/safemedtheme/dist/css/AdminLTE.min.css}"/>
+  <link rel="stylesheet" href="../../../../safemedtheme/dist/css/skins/_all-skins.min.css" th:href="@{/safemedtheme/dist/css/skins/_all-skins.min.css}"/>
+  <!-- iCheck -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/iCheck/flat/blue.css" th:href="@{/safemedtheme/plugins/iCheck/flat/blue.css}"/>
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/datepicker/datepicker3.css" th:href="@{/safemedtheme/plugins/datepicker/datepicker3.css}"/>
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.css" th:href="@{/safemedtheme/plugins/daterangepicker/daterangepicker.css}"/>
+
+</head>
+<body class="hold-transition skin-black-light sidebar-mini fixed">
+<div class="wrapper">
+
+  <div th:replace="fragment/top :: header" th:remove="tag"></div>
+  
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        <small>Sommaire Clinique</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Accueil</a></li>
+        <li><a href="#"> Patient</a></li>
+        <li class="active">Sommaire clinique</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <footer class="main-footer">
+     <div th:replace="fragment/bottom :: footer" th:remove="tag"></div>
+  </footer>
+</div>
+
+<!-- jQuery 2.2.3 -->
+<script src="../../../../safemedtheme/plugins/jQuery/jquery-2.2.3.min.js" th:src="@{/safemedtheme/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.6 -->
+<script src="../../../../safemedtheme/bootstrap/js/bootstrap.min.js" th:src="@{/safemedtheme/bootstrap/js/bootstrap.min.js}"></script>
+<!-- daterangepicker -->
+<script src="../../../../safemedtheme/plugins/moment/moment.min.js" th:src="@{/safemedtheme/plugins/moment/moment.min.js}"></script>
+<script src="../../../../safemedtheme/plugins/daterangepicker/daterangepicker.js" th:src="@{/safemedtheme/plugins/daterangepicker/daterangepicker.js}"></script>
+<!-- datepicker -->
+<script src="../../../../safemedtheme/plugins/datepicker/bootstrap-datepicker.js" th:src="@{/safemedtheme/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<!-- Slimscroll -->
+<script src="../../../../safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js" th:src="@{/safemedtheme/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<!-- AdminLTE App -->
+<script src="../../../../safemedtheme/dist/js/app.min.js" th:src="@{/safemedtheme/dist/js/app.min.js}"></script>
+<script src="../../../../safemedtheme/dist/js/pages/tableaudebord.js" th:src="@{/safemedtheme/dist/js/pages/tableaudebord.js}"></script>
+</body>
+</html>

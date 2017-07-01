@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+</head>
+<body>
+
+<div th:fragment="init" th:remove="tag"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/fontawesome/css/font-awesome.css"
+    th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/bootstrap.min.css"
+    th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+    th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/dashboard.css"
+    th:href="@{/bootstrap/css/dashboard.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/metisMenu/metisMenu.min.css"
+    th:href="@{/metisMenu/metisMenu.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap/css/bootstrap-editable.css"
+    th:href="@{/bootstrap/css/bootstrap-editable.css}" />   
+<link
+    href="//fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900"
+    rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+    href="../../../webapp/bootstrap-date/css/bootstrap-datetimepicker.min.css"
+    th:href="@{/bootstrap-date/css/bootstrap-datetimepicker.min.css}" />
+
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+    th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap-editable.min.js"
+    th:src="@{/bootstrap/js/bootstrap-editable.min.js}"></script>
+<script
+    src="../../../webapp/bootstrap-date/js/moment/moment-with-locales.min.js"
+    th:src="@{/bootstrap-date/js/moment/moment-with-locales.min.js}"></script>
+
+<script src="../../../webapp/bootstrap/js/dashboard.js"
+    th:src="@{/bootstrap/js/dashboard.js}"></script>
+<script src="../../../webapp/metisMenu/metisMenu.min.js"
+    th:src="@{/metisMenu/metisMenu.min.js}"></script>
+</div>
+</body>
+</html>

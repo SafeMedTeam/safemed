@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/fontawesome/css/font-awesome.css"
+	th:href="@{/fontawesome/css/font-awesome.css}" />
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap.min.css"
+	th:href="@{/bootstrap/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../../../webapp/bootstrap/css/bootstrap-theme.min.css"
+	th:href="@{/bootstrap/css/bootstrap-theme.min.css}" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="../../../webapp/bootstrap/js/bootstrap.min.js"
+	th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div th:fragment="pagebar">
+			<ul class="pagination">
+
+				<li th:class="${page.firstPage}? 'disabled' : ''"><span
+					th:if="${page.firstPage}">← Premier</span> 
+					<a aria-label="Previous" th:if="${not page.firstPage}"
+					th:href="@{${page.url}(page=1,size=${page.size})}">←
+						Premier</a></li>
+
+				<li th:class="${page.hasPreviousPage}? '' : 'disabled'"><span
+					th:if="${not page.hasPreviousPage}">«</span> <a
+					th:if="${page.hasPreviousPage}"
+					th:href="@{${page.url}(page=${page.number-1},size=${page.size})}"
+					title="Page precedente">«</a></li>
+
+				<li th:each="item : ${page.items}"
+					th:class="${item.current}? 'active' : ''"><span
+					th:if="${item.current}" th:text="${item.noPage}">1</span> 
+					<a th:if="${not item.current}"
+					th:href="@{${page.url}(page=${item.noPage},size=${page.size})}"><span
+						th:text="${item.noPage}">1</span></a></li>
+						
+				<li th:class="${page.hasNextPage}? '' : 'disabled'"><span
+					th:if="${not page.hasNextPage}">»</span> <a
+					th:if="${page.hasNextPage}"
+					th:href="@{${page.url}(page=${page.number+1},size=${page.size})}"
+					title="Page suivante">»</a></li>
+
+				<li th:class="${page.lastPage}? 'disabled' : ''"><span
+					th:if="${page.lastPage}">Dernier →</span> <a
+					th:if="${not page.lastPage}"
+					th:href="@{${page.url}(page=${page.totalPages},size=${page.size})}">Dernier
+						→</a></li>
+			</ul>
+		</div>
+
+</body>
+</html>
